@@ -25,9 +25,9 @@ function TempCart() {
       foreignKey: "creator_id",
     })
   }
-  TempCart.sync()
+  return TempCart
 }
 
-TempCart()
 // Export model
-module.exports = TempCart
+
+module.exports = TempCart()

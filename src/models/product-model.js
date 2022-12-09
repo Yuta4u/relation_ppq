@@ -6,34 +6,30 @@ const { DataTypes } = Sequelize
 
 // Defie schema
 
-function Product() {
-  const Product = db.define(
-    "product",
-    {
-      name: {
-        type: DataTypes.STRING,
-      },
-      quantity: {
-        type: DataTypes.INTEGER,
-      },
-      harga: {
-        type: DataTypes.INTEGER,
-      },
+const Product = db.define(
+  "product",
+  {
+    name: {
+      type: DataTypes.STRING,
     },
-    {
-      freezeTableName: true,
-      timestamps: true,
-    }
-  )
-
-  Product.associate = (models) => {
-    Product.hasMany(models.TempCart, {
-      foreignKey: "creator_id",
-    })
+    quantity: {
+      type: DataTypes.INTEGER,
+    },
+    harga: {
+      type: DataTypes.INTEGER,
+    },
+  },
+  {
+    freezeTableName: true,
+    timestamps: true,
   }
-  Product.sync()
+)
+
+Product.associate = (models) => {
+  Product.belongsTo(models.TempCart, {
+    foreignKey: "creator_id",
+  })
 }
 
-Product()
 // Export model
 module.exports = Product
