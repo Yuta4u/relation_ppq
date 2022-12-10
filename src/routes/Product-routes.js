@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-// controllers
-const { postProduct } = require("../controllers/product")
+// CONTROLLERS
+const { postProduct } = require("../controllers/Product-controllers")
 
 router.post("/product", postProduct)
 

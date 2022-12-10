@@ -4,24 +4,26 @@ const bodyParser = require("body-parser")
 const express = require("express")
 const multer = require("multer")
 const app = express()
-// ==========> UPLOAD IAMGE
 
 // MODELS
-// const product = require("./src/models/product-model")
-// const tempCart = require("./src/models/temp-cart-model")
-// const product = require("./src/routes/product")
+// const models = require("./src/models/models-index")
 
-const tempCart = require("./src/models/temp-cart-model")
-const product = require("./src/models/product-model")
+// // ROUTES
+const tempcart = require("./src/routes/Tempcart-routes")
+const product = require("./src/routes/Product-routes")
 
 app.use(bodyParser.json()) // untuk memparser json body
 app.use(express.json())
 app.use(cors())
 
-const port = 5000
-
-app.use(tempCart)
+app.use(tempcart)
 app.use(product)
+
+db.sync({ alter: true })
+  .then(() => {})
+  .catch((err) => console.log(err))
+
+const port = 5000
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
